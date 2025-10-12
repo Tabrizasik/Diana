@@ -6,30 +6,27 @@ public class Main {
 
 
     public static void main(String[] args) {
-        System.out.println("1");
-        var a = Integer.MAX_VALUE;
-        var b = "Hello and welcome!";
-        String c = null;
-        a = a + 1;
-        System.out.println("a = " + a);
+//        System.out.println(nutsInMinute(1.5, 1.5));
+//        System.out.println(minimum(new int[]{7, 9, 5, 6, 3, 4, 1, 8}));
+    }
 
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf(b);
+    public static double nutsInMinute(double belki, double minute) {
+        double v = (double) 2 / 3;
+        return v * minute * belki;
+    }
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+    public static int minimum(int[] numbers) {
+        int minimum = numbers[0];
+        for (int number : numbers) {
+            if (minimum > number) {
+                minimum = number;
+            }
+
         }
-        diana(b);
-        System.out.println("2");
+        return minimum;
+
     }
 
-    public static void diana(String b) {
-
-        System.out.println(b);
-    }
 
 
 }
