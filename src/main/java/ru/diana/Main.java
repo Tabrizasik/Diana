@@ -8,7 +8,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-
 //        Random random = new Random();
 //        int num = random.nextInt(1000);
 //        System.out.println(num);
@@ -205,13 +204,13 @@ public class Main {
     public static List<Integer> array5() {
         List<Integer> b = new ArrayList<>();
         Random random = new Random();
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 15; i++) {
             b.add(random.nextInt(1, 11));
         }
         System.out.println(b);
-        for (int j = 0; j < 16; j++) {
-            for (int i = 0; i < 16; i++) {
-                if (i < 15) {
+        for (int j = 0; j < 15; j++) {
+            for (int i = 0; i < 15; i++) {
+                if (i < 14) {
                     if (b.get(i) > b.get(i + 1)) {
                         int n = b.get(i);
                         b.set(i, b.get(i + 1));
@@ -227,10 +226,29 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int s = scanner.nextInt();
         List<Integer> b = array5();
-        int len = b.size() / 2;
-        for (int i = 0; i < 8; i++) {
-
+        int left = 0;
+        int right = b.size() - 1;
+        if (b.contains(s)){
+            while (true){
+                int middle = (left + right) / 2;
+                if (b.get(middle) == s){
+                    List<Integer> n = new ArrayList<>(b);
+                    n.remove(middle);
+                    if (n.contains(s)){
+                        while (b.get(middle) == b.get(middle - 1)){
+                            middle -= 1;
+                        }
+                    }
+                    System.out.println("Индекс первого числа " + s + " в списке - " + middle);
+                    break;
+                } else if (b.get(middle) < s) {
+                    left = middle + 1;
+                } else {
+                    right = middle - 1;
+                }
+            }
+        } else {
+            System.out.println("Такого числа нет в списке");
         }
     }
-
 }
