@@ -1,8 +1,6 @@
 package ru.diana;
 
-import ru.diana.cage.Array;
-import ru.diana.cage.Belki;
-import ru.diana.cage.Belki2;
+import ru.diana.collection.CustomList;
 
 import java.util.*;
 
@@ -13,22 +11,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Belki f = new Belki(6);
-        f.consoleOut();
-
-        f = new Belki2(8,9);
-        f.consoleOut();
-
-        Array z = new Array();
-        z.findMinMax();
-        z.findMinMax(-67);
-        z.findMinMax(36);
-
-//        Random random = new Random();
-//        int num = random.nextInt(1000);
-//        System.out.println(num);
-//        array1();
-//        array6();
+        CustomList numbers = new CustomList();
+        numbers.printStorage();
+        numbers.add(5);
+        numbers.printStorage();
+        numbers.add(6);
+        numbers.printStorage();
+        numbers.add(7);
+        numbers.printStorage();
+        numbers.add(8);
+        numbers.printStorage();
     }
 
     public static double nutsInMinute(double belki, double minute) {
