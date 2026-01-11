@@ -23,4 +23,12 @@ public class CustomListCell {
         }
     }
 
+    public void setNext(int index, int newValue){
+        if (index != 0) {
+            index -= 1;
+            nextStorageCell.setNext(index, newValue);
+        } else {
+            nextStorageCell.storage = newValue;
+        }
+    }
 }

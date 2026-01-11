@@ -13,6 +13,7 @@ public class Main {
 
         CustomList numbers = new CustomList();
         numbers.printStorage();
+        numbers.printStorage();
         numbers.add(5);
         numbers.printStorage();
         numbers.add(6);
@@ -21,6 +22,9 @@ public class Main {
         numbers.printStorage();
         numbers.add(8);
         numbers.printStorage();
+        numbers.set(3, -6);
+        numbers.printStorage();
+
     }
 
     public static double nutsInMinute(double belki, double minute) {
