@@ -11,19 +11,21 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CustomList numbers = new CustomList();
+        CustomList<Integer> numbers = new CustomList<>();
+
+        for (int i = 0; i < 9; i++){
+            numbers.add((i + 1));
+        }
         numbers.printStorage();
+        numbers.size();
+        numbers.remove(0);
+        numbers.remove(-6);
+        numbers.remove(8);
+        numbers.remove(7);
+        numbers.remove(3);
         numbers.printStorage();
-        numbers.add(5);
-        numbers.printStorage();
-        numbers.add(6);
-        numbers.printStorage();
-        numbers.add(7);
-        numbers.printStorage();
-        numbers.add(8);
-        numbers.printStorage();
-        numbers.set(3, -6);
-        numbers.printStorage();
+        numbers.size();
+
 
     }
 

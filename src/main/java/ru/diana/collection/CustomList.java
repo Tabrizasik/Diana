@@ -1,13 +1,20 @@
 package ru.diana.collection;
 
-public class CustomList {
-    CustomListCell storageCell;
-    int lenList = 0;
+public class CustomList <T>{
+    private CustomListCell<T> storageCell;
+    private int lenList = 0;
 
-    public void add(int storage) {
+    /**
+     * Добавляет элемент в конец списка
+     *
+     * @param storage Добавляемое значение
+     */
+    //     * @return Сумма чисел a и b
+    //     * @throws IllegalArgumentException Если одно из чисел слишком большое
+    public void add(T storage) {
         lenList += 1;
         if (storageCell == null) {
-            storageCell = new CustomListCell(storage);
+            storageCell = new CustomListCell<>(storage);
         } else {
             storageCell.addNext(storage);
         }
@@ -25,7 +32,7 @@ public class CustomList {
         System.out.println("Длина списка " + lenList);
     }
 
-    public void set(int index, int newValue) {
+    public void set(int index, T newValue) {
         if (index >= 0 && index < lenList) {
             if (index != 0) {
                 index -= 1;
@@ -34,6 +41,23 @@ public class CustomList {
                 storageCell.storage = newValue;
             }
         } else {
+            System.out.println("Неправильны индекс " + index);
+        }
+    }
+
+    public void remove(int index){
+        if (index >= 0 && index < lenList){
+            lenList -= 1;
+            if (index != 0 && index - 1 != 0) {
+                index -= 1;
+                storageCell.findPreviousCell(index);
+            } else if (index - 1 == 0) {
+                storageCell.removeNext();
+            } else {
+                System.out.println("Удалённый элемент " + storageCell.storage);
+                storageCell = storageCell.nextStorageCell;
+            }
+        }else {
             System.out.println("Неправильны индекс " + index);
         }
     }

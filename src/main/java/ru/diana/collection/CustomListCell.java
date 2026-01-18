@@ -1,16 +1,16 @@
 package ru.diana.collection;
 
-public class CustomListCell {
-    Integer storage;
-    CustomListCell nextStorageCell;
+public class CustomListCell <T> {
+    T storage;
+    CustomListCell<T> nextStorageCell;
 
-    public CustomListCell(int storage) {
+    public CustomListCell(T storage) {
         this.storage = storage;
     }
 
-    public void addNext(int storage) {
+    public void addNext(T storage) {
         if (nextStorageCell == null) {
-            nextStorageCell = new CustomListCell(storage);
+            nextStorageCell = new CustomListCell<>(storage);
         } else {
             nextStorageCell.addNext(storage);
         }
@@ -23,12 +23,26 @@ public class CustomListCell {
         }
     }
 
-    public void setNext(int index, int newValue){
+    public void setNext(int index, T newValue){
         if (index != 0) {
             index -= 1;
             nextStorageCell.setNext(index, newValue);
         } else {
             nextStorageCell.storage = newValue;
+        }
+    }
+
+    public void removeNext(){
+        System.out.println("Удалённый элемент " + nextStorageCell.storage);
+        nextStorageCell = nextStorageCell.nextStorageCell;
+    }
+
+    public void findPreviousCell(int index){
+        if (index - 1 != 0) {
+            index -= 1;
+            nextStorageCell.findPreviousCell(index);
+        } else {
+            nextStorageCell.removeNext();
         }
     }
 }
