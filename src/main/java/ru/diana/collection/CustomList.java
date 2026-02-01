@@ -1,6 +1,6 @@
 package ru.diana.collection;
 
-public class CustomList <T>{
+public class CustomList<T> {
     private CustomListCell<T> storageCell;
     private int lenList = 0;
 
@@ -45,20 +45,21 @@ public class CustomList <T>{
         }
     }
 
-    public void remove(int index){
-        if (index >= 0 && index < lenList){
+    public T remove(int index) throws IllegalArgumentException{
+        if (index >= 0 && index < lenList) { //проверка правильности индекса
             lenList -= 1;
-            if (index != 0 && index - 1 != 0) {
+            if (index > 1) { //элемент второй или дальше
                 index -= 1;
-                storageCell.findPreviousCell(index);
-            } else if (index - 1 == 0) {
-                storageCell.removeNext();
-            } else {
-                System.out.println("Удалённый элемент " + storageCell.storage);
+                return storageCell.findPreviousCell(index);
+            } else if (index == 1) { // элемент второй
+                return storageCell.removeNext();
+            } else { // первый элемент
+                T firstStorage = storageCell.storage;
                 storageCell = storageCell.nextStorageCell;
+                return firstStorage;
             }
-        }else {
-            System.out.println("Неправильны индекс " + index);
+        } else {
+            throw new IllegalArgumentException("Неправильны индекс " + index);
         }
     }
 }

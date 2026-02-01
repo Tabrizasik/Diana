@@ -32,17 +32,19 @@ public class CustomListCell <T> {
         }
     }
 
-    public void removeNext(){
-        System.out.println("Удалённый элемент " + nextStorageCell.storage);
+    public T removeNext(){
+        T firstStorage = nextStorageCell.storage;
         nextStorageCell = nextStorageCell.nextStorageCell;
+        return firstStorage;
     }
 
-    public void findPreviousCell(int index){
+    public T findPreviousCell(int index){
         if (index - 1 != 0) {
             index -= 1;
-            nextStorageCell.findPreviousCell(index);
+
+            return nextStorageCell.findPreviousCell(index);
         } else {
-            nextStorageCell.removeNext();
+            return nextStorageCell.removeNext();
         }
     }
 }
