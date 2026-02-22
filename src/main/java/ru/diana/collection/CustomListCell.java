@@ -16,11 +16,19 @@ public class CustomListCell <T> {
 //        }
 //    }
 
+    public void addNext(T storage) {
+        if (nextStorageCell == null) {
+            nextStorageCell = new CustomListCell<>(storage);//просто добавляет в конец списка
+        } else {
+            nextStorageCell.addNext(storage);
+        }
+    }
+
     public void addNext2(T storage) {
         if (nextStorageCell == null) {
             nextStorageCell = new CustomListCell<>(storage);//просто добавляет в конец списка
         } else {
-            nextStorageCell.addNext2(storage);
+            nextStorageCell.addNext(storage);
         }
     }
 
@@ -36,9 +44,10 @@ public class CustomListCell <T> {
             index -= 1;
             nextStorageCell.setNext(index, newValue);
         } else {
-            nextStorageCell.storage = newValue;
+            storage = newValue;
         }
     }
+
 
     public T removeNext(){
         T firstStorage = nextStorageCell.storage;
@@ -69,4 +78,6 @@ public class CustomListCell <T> {
         }
         return false;
     }
+
+
 }

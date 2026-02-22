@@ -1,13 +1,14 @@
 package ru.diana.collection;
 
 public class CustomList<T> {
-    private CustomListCell<T> storageCell;
-    private int lenList = 0;
+    protected CustomListCell<T> storageCell;
+    protected int lenList = 0;
 
     /**
      * Добавляет элемент в конец списка
      *
      * @param storage Добавляемое значение
+     * @return true
      */
     //     * @return Сумма чисел a и b
     //     * @throws IllegalArgumentException Если одно из чисел слишком большое
@@ -20,17 +21,19 @@ public class CustomList<T> {
 //            storageCell.addNext(storage);
 //        }
 //    } //функция ничего не возвращает
-
-    public boolean add(T storage) { //просто add
+    public boolean add(T storage) {
         lenList += 1;
         if (storageCell == null) { //добавить ошибки(4):UnsupportedOperationException, ClassCastException, NullPointerException, IllegalArgumentException
             storageCell = new CustomListCell<>(storage);
         } else {
-            storageCell.addNext2(storage);
+            storageCell.addNext(storage);
         }
-        return true; //функция возвращает true
+        return true;
     }
 
+    /**
+     * Выводит элементы списка
+     */
     public void printStorage() { //такого у списка нет
         System.out.println("Начало нового списка");
         if (storageCell != null) {
@@ -39,51 +42,76 @@ public class CustomList<T> {
         }
     }
 
+    /**
+     * Возвращает длину списка
+     *
+     * @return длина списка
+     */
+
     public int size() { //не знаю что такое abstract int
         return lenList;//функция возвращает число длины списка
     }
 
-    public void set(int index, T newValue) { //добавить ошибки(4):UnsupportedOperationException, ClassCastException, NullPointerException, IllegalArgumentException, IndexOutOfBoundsException
-        if (index >= 0 && index < lenList) {
-            if (index != 0) {
-                index -= 1;
-                storageCell.setNext(index, newValue);
-            } else {
-                storageCell.storage = newValue;
-            }
-        } else {
-            System.out.println("Неправильны индекс " + index);
-        }
+    /**
+     * Заменяет значения по индексу на новое
+     *
+     * @param index    индекс элемента
+     * @param newValue новое значение
+     * @throws IllegalArgumentException если index меньше 0 или больше длины списка
+     */
+
+    public void set(int index, T newValue) {
+        checkIndex(index);
+        storageCell.setNext(index, newValue);
     }
 
-    public T remove(int index) throws IllegalArgumentException{
-        if (index >= 0 && index < lenList) { //проверка правильности индекса
-            lenList -= 1;
-            if (index > 1) { //элемент второй или дальше
-                index -= 1;
-                return storageCell.findPreviousCell(index);
-            } else if (index == 1) { // элемент второй
-                return storageCell.removeNext();
-            } else { // первый элемент
-                T firstStorage = storageCell.storage;
-                storageCell = storageCell.nextStorageCell;
-                return firstStorage;
-            }
-        }else {
-            throw new IllegalArgumentException("Неправильны индекс " + index);
+    /**
+     * Удаляет значения по индексу
+     *
+     * @param index индекс элемента для удаления
+     * @return удалённое значение
+     * @throws IllegalArgumentException если index меньше 0 или больше длины списка
+     */
+
+    public T remove(int index) {
+        checkIndex(index);//проверка правильности индекса
+        lenList -= 1;
+        if (index > 1) { //элемент второй или дальше
+            index -= 1;
+            return storageCell.findPreviousCell(index);
+        } else if (index == 1) { // элемент второй
+            return storageCell.removeNext();
+        } else { // первый элемент
+            T firstStorage = storageCell.storage;
+            storageCell = storageCell.nextStorageCell;
+            return firstStorage;
         }
+
     }
 
-    public boolean remove(T value){ //remove Удаляет первое появление указанного элемента из этого списка, если он присутствует
+    /**
+     * Удаляет первое появление указанного элемента из этого списка, если он присутствует
+     *
+     * @param value значение которое нужно удалить
+     * @return true, если элемент был удалён, и false, если элемента нету в списке
+     */
+
+    public boolean remove(T value) { //remove
         //добавить ошибки(3):ClassCastException, NullPointerException, UnsupportedOperationException
-        if (storageCell.storage == value){
+        if (storageCell.storage == value) {
             lenList -= 1;
             storageCell = storageCell.nextStorageCell;
             return true;
-        }else if (storageCell.nextStorageCell.storage == value) {
+        } else if (storageCell.nextStorageCell.storage == value) {
             lenList -= 1;
             return storageCell.removeNext2();
         } //ошибка с size
-        return storageCell.findPreviousCell2(value);//функция возвращает true, если элемент был удалён, и false, если элемента нету в списке
+        return storageCell.findPreviousCell2(value);
+    }
+
+    protected void checkIndex(int index) throws IllegalArgumentException {
+        if (index < 0 || index >= lenList) {
+            throw new IllegalArgumentException("Неправильны индекс " + index);
         }
     }
+}

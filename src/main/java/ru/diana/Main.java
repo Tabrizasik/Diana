@@ -1,6 +1,7 @@
 package ru.diana;
 
 import ru.diana.collection.CustomList;
+import ru.diana.collection.CustomStack;
 
 import java.util.*;
 
@@ -11,23 +12,33 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CustomList<Integer> numbers = new CustomList<>();
+        CustomList<Integer> numbers = new CustomList<>() {
+            @Override
+            public void printClassDescription() {
+
+            }
+        };
 
         for (int i = 0; i < 4; i++){
             numbers.add((i + 1));
         }
         numbers.printStorage();
         numbers.size();
-        numbers.remove(0);
-        numbers.remove(2);
+        numbers.printClassDescription();
+        numbers.set(3, 56);
         numbers.printStorage();
 
-        CustomList<String> words = new CustomList<>();
-        words.add("кот");
 
-        words.printStorage();
-        System.out.println(words.remove("кот"));
-        words.printStorage();
+//        numbers.remove(0);
+//        numbers.remove(2);
+//        numbers.printStorage();
+//        numbers.add()
+//        CustomList<String> words = new CustomList<>();
+//        words.add("кот");
+//
+//        words.printStorage();
+//        System.out.println(words.remove("кот"));
+//        words.printStorage();
 
 //        public static Integer removeFromIntList(CustomList<Integer> numbers, int index) {
 //        try {
