@@ -8,11 +8,19 @@ public class CustomListCell <T> {
         this.storage = storage;
     }
 
-    public void addNext(T storage) {
+//    public void addNext(T storage) {
+//        if (nextStorageCell == null) {
+//            nextStorageCell = new CustomListCell<>(storage);
+//        } else {
+//            nextStorageCell.addNext(storage);
+//        }
+//    }
+
+    public void addNext2(T storage) {
         if (nextStorageCell == null) {
-            nextStorageCell = new CustomListCell<>(storage);
+            nextStorageCell = new CustomListCell<>(storage);//просто добавляет в конец списка
         } else {
-            nextStorageCell.addNext(storage);
+            nextStorageCell.addNext2(storage);
         }
     }
 
@@ -46,5 +54,19 @@ public class CustomListCell <T> {
         } else {
             return nextStorageCell.removeNext();
         }
+    }
+
+    public boolean removeNext2(){
+        nextStorageCell = nextStorageCell.nextStorageCell;
+        return true;
+    }
+
+    public boolean findPreviousCell2(T value) {
+        if (nextStorageCell.nextStorageCell != null && nextStorageCell.nextStorageCell.storage != value) {
+            nextStorageCell.findPreviousCell2(value);
+        } else if (nextStorageCell.nextStorageCell != null && nextStorageCell.nextStorageCell.storage == value){
+            return nextStorageCell.removeNext2();
+        }
+        return false;
     }
 }

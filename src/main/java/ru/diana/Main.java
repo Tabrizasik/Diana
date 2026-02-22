@@ -10,32 +10,32 @@ public class Main {
 
 
     public static void main(String[] args) {
+
         CustomList<Integer> numbers = new CustomList<>();
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 4; i++){
             numbers.add((i + 1));
         }
-
         numbers.printStorage();
         numbers.size();
-
-        System.out.println(removeFromIntList(numbers, 0));
-        System.out.println(removeFromIntList(numbers, -6));
-        System.out.println(removeFromIntList(numbers, 8));
-        System.out.println(removeFromIntList(numbers, 7));
-        System.out.println(removeFromIntList(numbers, 3));
-
+        numbers.remove(0);
+        numbers.remove(2);
         numbers.printStorage();
-        numbers.size();
-    }
 
-    public static Integer removeFromIntList(CustomList<Integer> numbers, int index) {
-        try {
-            return numbers.remove(index);
-        } catch (Exception e) {
-            System.out.println(e.getMessage() + " " + Arrays.toString(e.getStackTrace()));
-            return null;
-        }
+        CustomList<String> words = new CustomList<>();
+        words.add("кот");
+
+        words.printStorage();
+        System.out.println(words.remove("кот"));
+        words.printStorage();
+
+//        public static Integer removeFromIntList(CustomList<Integer> numbers, int index) {
+//        try {
+//            return numbers.remove(index);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage() + " " + Arrays.toString(e.getStackTrace()));
+//            return null;
+//        }
     }
 
     public static double nutsInMinute(double belki, double minute) {
