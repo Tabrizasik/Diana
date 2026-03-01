@@ -1,6 +1,6 @@
 package ru.diana.collection;
 
-public class CustomStack<T> extends CustomList<T> {
+public class CustomStack<T> extends GenericCustomList<T> {
 
     /**
      * Добавляет элемент в начало списка

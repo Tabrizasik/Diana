@@ -1,7 +1,7 @@
 package ru.diana;
 
 import ru.diana.collection.CustomList;
-import ru.diana.collection.CustomStack;
+import ru.diana.collection.GenericCustomList;
 
 import java.util.*;
 
@@ -11,42 +11,19 @@ public class Main {
 
 
     public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(9);
 
-        CustomList<Integer> numbers = new CustomList<>() {
-            @Override
-            public void printClassDescription() {
-
-            }
-        };
-
-        for (int i = 0; i < 4; i++){
-            numbers.add((i + 1));
+        for(Integer number : list){
+            System.out.print(number );
         }
-        numbers.printStorage();
-        numbers.size();
-        numbers.printClassDescription();
-        numbers.set(3, 56);
-        numbers.printStorage();
+
+        CustomList<Integer> customlist = new CustomList<>();
+        System.out.print(customlist);
 
 
-//        numbers.remove(0);
-//        numbers.remove(2);
-//        numbers.printStorage();
-//        numbers.add()
-//        CustomList<String> words = new CustomList<>();
-//        words.add("кот");
-//
-//        words.printStorage();
-//        System.out.println(words.remove("кот"));
-//        words.printStorage();
 
-//        public static Integer removeFromIntList(CustomList<Integer> numbers, int index) {
-//        try {
-//            return numbers.remove(index);
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage() + " " + Arrays.toString(e.getStackTrace()));
-//            return null;
-//        }
     }
 
     public static double nutsInMinute(double belki, double minute) {
