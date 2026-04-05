@@ -15,11 +15,14 @@ public class Main {
         list.add(1);
         list.add(9);
 
-        for(Integer number : list){
-            System.out.print(number );
-        }
+        System.out.print(list);
+
+//        for(Integer number : list){
+//            System.out.print(number );
+//        }
 
         CustomList<Integer> customlist = new CustomList<>();
+
         System.out.print(customlist);
 
 

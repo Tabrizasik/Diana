@@ -32,12 +32,15 @@ public class CustomListCell <T> {
         }
     }
 
-    public void printListCell() {
-        if (nextStorageCell != null) {
-            System.out.println(nextStorageCell.storage);
+    public String printListCell() {
+        String n = "";
+        if (nextStorageCell.nextStorageCell != null) {
+            n = nextStorageCell.printListCell();
             nextStorageCell.printListCell();
         }
+        return ", " + String.valueOf(nextStorageCell.storage) + n;
     }
+
 
     public void setNext(int index, T newValue){
         if (index != 0) {
@@ -70,7 +73,7 @@ public class CustomListCell <T> {
         return true;
     }
 
-    public boolean findPreviousCell2(T value) {
+    public boolean findPreviousCell2(Object value) {
         if (nextStorageCell.nextStorageCell != null && nextStorageCell.nextStorageCell.storage != value) {
             nextStorageCell.findPreviousCell2(value);
         } else if (nextStorageCell.nextStorageCell != null && nextStorageCell.nextStorageCell.storage == value){

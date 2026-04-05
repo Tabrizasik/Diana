@@ -1,20 +1,79 @@
 package ru.diana.collection;
 
 import java.util.Collection;
+import java.util.Iterator;
 
-public abstract class GenericCustomList<T> implements Collection {
+public abstract class GenericCustomList<T> implements Collection<T> {
     protected CustomListCell<T> storageCell;
     protected int lenList = 0;
 
     protected static Integer objectCount = 0;
+
+
     /**
      * Добавляет элемент в конец списка
      *
      * @param storage Добавляемое значение
      * @return true
      */
-
     public abstract boolean add(T storage);
+
+    @Override
+    public boolean isEmpty() {
+        return lenList == 0;
+    }
+
+    @Override
+    public String toString() {
+        return printStorage();
+    }
+
+
+
+    @Override
+    public boolean contains(Object o) {
+        return false;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return null;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public boolean addAll(Collection c) {
+        return false;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public boolean retainAll(Collection c) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection c) {
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection c) {
+        return false;
+    }
+
+    @Override
+    public Object[] toArray(Object[] a) {
+        return new Object[0];
+    }
 
     public abstract void printClassDescription();
 
@@ -25,12 +84,13 @@ public abstract class GenericCustomList<T> implements Collection {
     /**
      * Выводит элементы списка
      */
-    public final void printStorage() { //такого у списка нет
-        System.out.println("Начало нового списка");
+    public String printStorage() { //такого у списка нет
+        String allStorage = "";
         if (storageCell != null) {
-            System.out.println(storageCell.storage);
+            allStorage = storageCell.printListCell();
             storageCell.printListCell();
-        }
+        } else {return "[]";}
+        return "[" + String.valueOf(storageCell.storage) + allStorage + "]";
     }
 
     /**
@@ -87,7 +147,7 @@ public abstract class GenericCustomList<T> implements Collection {
      * @return true, если элемент был удалён, и false, если элемента нету в списке
      */
 
-    public boolean remove(T value) { //remove
+    public boolean remove(Object value) { //remove
         //добавить ошибки(3):ClassCastException, NullPointerException, UnsupportedOperationException
         if (storageCell.storage == value) {
             lenList -= 1;
