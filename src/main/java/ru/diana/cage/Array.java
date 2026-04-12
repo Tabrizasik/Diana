@@ -42,12 +42,12 @@ public class Array {
     //Попытка № 2 файл "Диана 2" Перемешать его элементы случайным образом так, чтобы каждый элемент оказался на новом месте, но сделано неправильно.
     public void array2() {
         for (int i = 0; i < 3; i++) {
-            b.add(random.nextInt(1, 11));
+            b.addNext(random.nextInt(1, 11));
         }
         System.out.println(b);
         List<Integer> ind = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            ind.add(i);
+            ind.addNext(i);
         }
         int len = 3;
         List<Integer> c = new ArrayList<>();
@@ -65,7 +65,7 @@ public class Array {
                 }
             }
             System.out.println(ind.get(a));
-            c.add(b.get(ind.get(a)));
+            c.addNext(b.get(ind.get(a)));
             ind.remove(a);
             len -= 1;
         }

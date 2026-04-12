@@ -1,8 +1,7 @@
 package ru.diana;
 
-import ru.diana.cage.Array;
-import ru.diana.cage.Belki;
-import ru.diana.cage.Belki2;
+import ru.diana.collection.CustomList;
+import ru.diana.collection.GenericCustomList;
 
 import java.util.*;
 
@@ -12,23 +11,22 @@ public class Main {
 
 
     public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(9);
 
-        Belki f = new Belki(6);
-        f.consoleOut();
+        System.out.print(list);
 
-        f = new Belki2(8,9);
-        f.consoleOut();
+//        for(Integer number : list){
+//            System.out.print(number );
+//        }
 
-        Array z = new Array();
-        z.findMinMax();
-        z.findMinMax(-67);
-        z.findMinMax(36);
+        CustomList<Integer> customlist = new CustomList<>();
 
-//        Random random = new Random();
-//        int num = random.nextInt(1000);
-//        System.out.println(num);
-//        array1();
-//        array6();
+        System.out.print(customlist);
+
+
+
     }
 
     public static double nutsInMinute(double belki, double minute) {
