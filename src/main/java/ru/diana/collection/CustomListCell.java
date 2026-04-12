@@ -82,5 +82,15 @@ public class CustomListCell <T> {
         return false;
     }
 
+    public boolean findPreviousCellForContains(Object element) {
+        if (nextStorageCell != null && nextStorageCell.storage != element) {
+            return nextStorageCell.findPreviousCellForContains(element);
+        } else if (nextStorageCell != null && nextStorageCell.storage == element){
+            return true;
+        }
+        return false;
+    }
+
+
 
 }

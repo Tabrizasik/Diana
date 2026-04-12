@@ -3,7 +3,7 @@ package ru.diana.collection;
 import java.util.Collection;
 import java.util.Iterator;
 
-public abstract class GenericCustomList<T> implements Collection<T> {
+public abstract class GenericCustomList<T> implements Collection<T>{
     protected CustomListCell<T> storageCell;
     protected int lenList = 0;
 
@@ -32,16 +32,37 @@ public abstract class GenericCustomList<T> implements Collection<T> {
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        if (storageCell.storage == o) {
+            return true;
+        }
+        return storageCell.findPreviousCellForContains(o);
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
+//        return new Iterator<>(){
+//            @Override
+//            public boolean hasNext() {
+//                if (storageCell != null){
+//                    return true;
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public T next() {
+//                return storageCell;
+//            }
+//        };
         return null;
     }
 
     @Override
     public Object[] toArray() {
+        Object[] array = new Object[lenList];
+        for (int i = 0; i < lenList; i++){
+            array[i] = ;
+        }
         return new Object[0];
     }
 
@@ -67,7 +88,12 @@ public abstract class GenericCustomList<T> implements Collection<T> {
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+        for (Object element : c){
+            if (!contains(element)){
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -84,8 +110,8 @@ public abstract class GenericCustomList<T> implements Collection<T> {
     /**
      * Выводит элементы списка
      */
-    public String printStorage() { //такого у списка нет
-        String allStorage = "";
+    public String printStorage() {
+        String allStorage;
         if (storageCell != null) {
             allStorage = storageCell.printListCell();
             storageCell.printListCell();

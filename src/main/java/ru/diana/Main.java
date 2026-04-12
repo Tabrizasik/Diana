@@ -1,6 +1,7 @@
 package ru.diana;
 
 import ru.diana.collection.CustomList;
+import ru.diana.collection.CustomListCell;
 import ru.diana.collection.GenericCustomList;
 
 import java.util.*;
@@ -12,10 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(9);
 
-        System.out.print(list);
 
 //        for(Integer number : list){
 //            System.out.print(number );
@@ -23,7 +21,13 @@ public class Main {
 
         CustomList<Integer> customlist = new CustomList<>();
 
+        customlist.add(1);
+        customlist.add(2);
+        customlist.add(3);
+        customlist.add(4);
+        customlist.add(5);
         System.out.print(customlist);
+
 
 
 
