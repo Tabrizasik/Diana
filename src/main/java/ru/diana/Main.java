@@ -14,21 +14,51 @@ public class Main {
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
 
+        Random random = new Random();
+        CustomList<Integer> customlist = new CustomList<>();
+        for (int i = 0; i < 10; i++) {
+            customlist.add(random.nextInt(1, 31));
+        }
+        System.out.println(customlist);
 
-//        for(Integer number : list){
-//            System.out.print(number );
+
+        Iterator<Integer> itr = customlist.iterator();
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
+
+
+
+//        Map<String, Integer> diana = new HashMap<>();
+//        diana.put("abs", 1);
+//        diana.put("nbv", 2);
+//        diana.put("afawf", 137);
+//
+//        Iterator<Integer> itr = diana.values().iterator();
+//        int i = 0;
+//        while (itr.hasNext()) {
+//            Integer d = itr.next();
+//            i++;
+//            if (i == 2) {
+//                System.out.println(" aaa " + d);
+//            } else {
+//                System.out.println(" bbb " + d);
+//            }
 //        }
 
-        CustomList<Integer> customlist = new CustomList<>();
 
-        customlist.add(1);
-        customlist.add(2);
-        customlist.add(3);
-        customlist.add(4);
-        customlist.add(5);
-        System.out.print(customlist);
-
-
+////        for(Integer number : list){
+////            System.out.print(number );
+////        }
+//
+//        CustomList<Integer> customlist = new CustomList<>();
+//
+//        customlist.add(1);
+//        customlist.add(2);
+//        customlist.add(3);
+//        customlist.add(4);
+//        customlist.add(5);
+//        System.out.print(customlist);
 
 
     }

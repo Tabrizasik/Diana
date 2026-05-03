@@ -40,29 +40,29 @@ public abstract class GenericCustomList<T> implements Collection<T>{
 
     @Override
     public Iterator<T> iterator() {
-//        return new Iterator<>(){
-//            @Override
-//            public boolean hasNext() {
-//                if (storageCell != null){
-//                    return true;
-//                }
-//                return false;
-//            }
-//
-//            @Override
-//            public T next() {
-//                return storageCell;
-//            }
-//        };
-        return null;
+        return new Iterator<T>() {
+            CustomListCell<T> cursor = storageCell;
+
+            @Override
+            public boolean hasNext() {
+                return cursor != null;
+            }
+
+            @Override
+            public T next() {
+                T a = cursor.storage;
+                cursor = cursor.nextStorageCell;
+                return a;
+            }
+        };
     }
 
     @Override
     public Object[] toArray() {
-        Object[] array = new Object[lenList];
-        for (int i = 0; i < lenList; i++){
-            array[i] = ;
-        }
+//        Object[] array = new Object[lenList];
+//        for (int i = 0; i < lenList; i++){
+//            array[i] = ;
+//        }
         return new Object[0];
     }
 
